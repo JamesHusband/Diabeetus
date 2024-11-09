@@ -8,6 +8,11 @@
 
 # "Mum & Dad Friendly" AI-Driven Application for Diabetes Management
 
+## The story so far
+I use AI in everything I do, not just in the development world, but also to feed my thirst for knowledge and how to live a mindful life. So, after spending some time with the folks and noticing my dads trouble managing his regime for Diabetes, I obviously wanted to help in anyway possible, it only occured to me to me while having a quick chat with gpt to realise the obvious, I was asking the wrong damn question... In fact, I did not even need to ask a question, I needed to feed GPT data about my dads glucose levels over a set period of time, and when provide the relevant variable data can use a scientific approach to adjustments and logging.
+
+
+
 ### Overview
 The "Mum and Dad" app is designed to support caregivers in managing a loved one’s diabetes regimen, specifically focusing on stabilizing blood glucose levels. The app leverages AI to analyze and adjust various factors affecting blood glucose in a structured, controlled manner. The ultimate goal is to provide caregivers with peace of mind and data-backed insights to maintain consistent blood sugar levels, particularly in the afternoon and overnight.
 
