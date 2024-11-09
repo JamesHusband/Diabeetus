@@ -6,7 +6,7 @@
 
 <br />
 
-# "Mum and Dad" AI-Driven Application for Diabetic Regimen Management
+# "Mum & Dad Friendly" AI-Driven Application for Diabetes Management
 
 ### Overview
 The "Mum and Dad" app is designed to support caregivers in managing a loved one’s diabetes regimen, specifically focusing on stabilizing blood glucose levels. The app leverages AI to analyze and adjust various factors affecting blood glucose in a structured, controlled manner. The ultimate goal is to provide caregivers with peace of mind and data-backed insights to maintain consistent blood sugar levels, particularly in the afternoon and overnight.
