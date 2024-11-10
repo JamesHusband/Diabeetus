@@ -1,6 +1,6 @@
 <br />
 
-> **IMPORTANT DISCLAIMER**: _This app supports diabetes management but should not replace professional medical advice. Always verify recommendations with a healthcare provider before making any changes._
+> **IMPORTANT DISCLAIMER**: *This app supports diabetes management but should not replace professional medical advice. Always verify recommendations with a healthcare provider before making any changes.*
 
 <div align="center">
   <img src="https://i.ibb.co/x2HJYcf/diabeetus.jpg" alt="Diabeetus">
@@ -9,8 +9,7 @@
 
 ### AI Diabetes Management: **Mum & Dad Friendly!**
 
-#### \*The Story of **Diabetus\***
-
+#### *The Story of **Diabetus***
 I use AI in everything I do—not just in the development world, but also to feed my thirst for knowledge and live a mindful life.
 
 After spending time with my parents, I noticed my dad's difficulty managing his diabetes regimen, and I wanted to help in any way possible. It only occurred to me while having a quick chat with GPT to realize the obvious:
@@ -20,7 +19,6 @@ After spending time with my parents, I noticed my dad's difficulty managing his 
 I needed to **input data** into the **AI** about my dad's **glucose levels** over a **time period**. Once the relevant **variables** were provided, the AI could apply a **scientific approach** for **adjustments**, **logging**, and **pattern recognition**.
 
 ### Overview
-
 **Diabetus** helps users manage their diabetes regimen by focusing on **stabilizing blood glucose levels**. The app uses **AI to analyze and adjust** key factors affecting blood glucose in a structured, data-driven manner.
 
 Our goal is to provide **peace of mind** through **consistent, data-backed insights**, helping users maintain stable blood sugar levels with greater confidence.
@@ -91,6 +89,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
 
 - **Improved Blood Glucose Stability**  
   Enhanced regimen adjustments and real-time feedback prevent dangerous highs and lows.
+  
 - **Empowered Caregivers**  
   Data-driven recommendations offer caregivers a reliable structure, reducing stress and uncertainty.
 
