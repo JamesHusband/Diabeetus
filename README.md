@@ -4,6 +4,11 @@
   <h3 align="center">Diabeetus</h3>
 </div>
 
+
+### Disclaimer
+This app is a supportive tool and **does not replace professional medical advice**. Recommendations are based on individual data and should be verified with a healthcare provider before making any changes to diabetes management.
+
+
 <br />
 
 # "Mum & Dad Friendly" AI-Driven Application for Diabetes Management
