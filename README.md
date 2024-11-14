@@ -3,7 +3,7 @@
 > **IMPORTANT DISCLAIMER**: _This app supports diabetes management but should not replace professional medical advice. Always verify recommendations with a healthcare provider before making any changes._
 
 <div align="center">
-  <img src="https://i.ibb.co/x2HJYcf/diabeetus.jpg" alt="Diabeetus">
+  <img src="https://i.ibb.co/cF8pGD9/ui.png" alt="Diabeetus">
   <h1 align="center">DIABETUS</h1>
 </div>
 
