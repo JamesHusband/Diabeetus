@@ -11,7 +11,7 @@
 
 #### \*The Story of **Diabetus\***
 
-I use AI in everything I do—not just in the development world, but also to feed my thirst for knowledge and live a mindful life.
+I use AI in everything I do—not just in the development world but also to feed my thirst for knowledge and live a mindful life.
 
 After spending time with my parents, I noticed my dad's difficulty managing his diabetes regimen, and I wanted to help in any way possible. It only occurred to me while having a quick chat with GPT to realize the obvious:
 
@@ -23,7 +23,10 @@ I needed to **input data** into the **AI** about my dad's **glucose levels** ove
 
 **Diabetus** helps users manage their diabetes regimen by focusing on **stabilizing blood glucose levels**. The app uses **AI to analyze and adjust** key factors affecting blood glucose in a structured, data-driven manner.
 
-Our goal is to provide **peace of mind** through **consistent, data-backed insights**, helping users maintain stable blood sugar levels with greater confidence.
+We aim to provide **peace of mind** through **consistent, data-backed insights**, helping users maintain stable blood sugar levels with greater confidence.
+
+#### Hemoglobin A1C (HbA1c)
+What is a hemoglobin A1C (HbA1C) test? A hemoglobin A1C (HbA1C) test is a blood test that shows your average blood sugar (glucose) level over the past two to three months. Glucose is a sugar in your blood that comes from your food.
 
 ---
 
@@ -31,7 +34,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
 
 1. **User Profile Setup**
 
-   - **Purpose**: Capture a comprehensive profile of the patient’s current regimen and daily habits.
+   - **Purpose**: Capture a comprehensive profile of the user's current regimen and daily habits.
    - **Details Collected**:
      - Insulin type and doses (morning/evening)
      - Daily routines (meal timings, types, exercise, sleep patterns)
@@ -40,7 +43,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
 
 2. **Variable Tracking and Logging**
 
-   - **Purpose**: Enable caregivers to log and track critical diabetes management factors.
+   - **Purpose**: Enable users to log and track critical diabetes management factors.
    - **Variables Tracked**:
      - Insulin doses and administration times
      - Carbohydrate intake for each meal and snack
@@ -49,21 +52,20 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
 
 3. **Controlled Adjustment Recommendations**
 
-   - **Purpose**: Support caregivers in making data-driven adjustments to the regimen one variable at a time.
+   - **Purpose**: Support users in making data-driven adjustments to the regimen one variable at a time.
    - **Functionality**:
-     - Guide users to make small, single-variable adjustments (e.g., slightly reducing the evening dose)
+     - Guide users to make minor, single-variable adjustments (e.g., slightly reducing the evening dose)
      - Set observation periods (e.g., 3–5 days) and provide reminders to monitor changes
      - Document the impact of each adjustment, promoting an iterative and evidence-based approach
 
 4. **Snack and Nutritional Guidance**
 
    - **Purpose**: Offer controlled snacking options to support stable glucose levels.
-   - **Example Integration**: Introducing Huel as an afternoon snack
+   - **Example Integration**:
      - The AI provides recommended portion sizes and nutrient breakdowns
      - Users log glucose levels post-snack to analyze blood sugar response and adjust as necessary
 
 5. **Real-Time Monitoring and Feedback**
-
    - **Purpose**: Use Continuous Glucose Monitoring (CGM) data for live, actionable insights.
    - **Functionality**:
      - Integrates with CGM to capture real-time glucose data
@@ -75,7 +77,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
    - **Purpose**: Prompt users to check blood glucose at critical times, particularly when recent adjustments or meals might influence levels.
    - **Examples of Alerts**:
      - Notifications to check glucose 2 hours after meals or insulin administration
-     - Reminders to test overnight blood sugar if evening dose was adjusted
+     - Reminders to test overnight blood sugar if the evening dose was adjusted
      - Scheduled snack reminders if glucose dips are observed in the afternoons
 
 7. **Insights and Pattern Recognition**
@@ -83,7 +85,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
    - **Functionality**:
      - Analyze logged data to detect trends (e.g., afternoon glucose dips)
      - Provide recommendations for regimen adjustments over time, refining the plan based on observed patterns
-     - Highlight factors that consistently affect stability, giving caregivers a clearer understanding of variable sensitivities
+     - Highlight factors that consistently affect stability, giving users a clearer understanding of variable sensitivities
 
 ---
 
@@ -95,7 +97,7 @@ Our goal is to provide **peace of mind** through **consistent, data-backed insig
   Data-driven recommendations offer caregivers a reliable structure, reducing stress and uncertainty.
 
 - **Optimized Insulin and Dietary Management**  
-  Insights from the app help identify and adjust key factors that impact blood glucose, especially in challenging periods like overnight.
+  The app's insights help identify and adjust key factors that impact blood glucose, especially during challenging periods like overnight.
 
 ---
 
@@ -103,7 +105,7 @@ This application aims to create a scientifically grounded, supportive environmen
 
 ## MVP Prototype Overview
 
-For the initial MVP prototype, the focus is on delivering core diabetes management functionality, removing AI-based features temporarily. The MVP will use mock data for basic interactions and feature testing, providing a foundation for further AI integration.
+For the initial MVP prototype, the focus is on delivering core diabetes management functionality, temporarily removing AI-based features. The MVP will use mock data for basic interactions and feature testing, providing a foundation for further AI integration.
 
 ### Key Features for MVP Prototype
 
@@ -111,15 +113,15 @@ For the initial MVP prototype, the focus is on delivering core diabetes manageme
   - Collect basic user information and diabetes regimen details (e.g., insulin doses, meal times).
 - **Manual Glucose Logging**
 
-  - Simple input form for users to log glucose levels with optional context (e.g., before or after meals).
+  - A simple input form for users to log glucose levels in an optional context (e.g., before or after meals).
 
 - **Customizable Logging Reminders**
 
-  - Enable users to set reminders for logging glucose at specific times of day or after meals.
+  - Enable users to set reminders to log glucose at specific times of the day or after meals.
 
 - **Glucose Data Visualization**
 
-  - Display logged glucose readings in a graph format to show trends over time.
+  - Display logged glucose readings graphically to show trends over time.
 
 - **Basic Health Reminders**
 
@@ -128,4 +130,4 @@ For the initial MVP prototype, the focus is on delivering core diabetes manageme
 - **Progress Tracking**
   - Weekly or monthly glucose trends displayed in graphs to show stability over time.
 
-This MVP provides a streamlined experience, allowing users to track their glucose levels and establish a daily routine, while creating the foundational structure for future AI-driven insights and pattern recognition.
+This MVP provides a streamlined experience, allowing users to track their glucose levels and establish a daily routine while creating the foundational structure for future AI-driven insights and pattern recognition.
