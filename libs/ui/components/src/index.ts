@@ -1,1 +1,1 @@
-export * from './lib/welcome/welcome';
+export * from './lib/glucose-chart/glucose-chart';

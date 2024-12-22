@@ -13,8 +13,13 @@ import {
   Loader2,
   Clock,
 } from 'lucide-react';
+import { GlucoseChart } from '@diabetus/ui';
+import {
+  PatientInfo,
+  LogbookEntry,
+  GlucoseReading,
+} from '@diabetus/shared/types';
 import { fetchPatientInfo, fetchLogbook } from './api/api';
-import { PatientInfo, LogbookEntry } from '@diabetus/shared/types';
 
 export default function Dashboard() {
   const getTrendArrowLabel = (trendArrow: number): string => {
@@ -53,6 +58,7 @@ export default function Dashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [latestReading, setLatestReading] = useState<LogbookEntry | null>(null);
+  const [readings, setReadings] = useState<GlucoseReading[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -73,6 +79,7 @@ export default function Dashboard() {
         const logbook = await fetchLogbook();
         if (logbook.length > 0) {
           setLatestReading(logbook[0]); // Assuming the first entry is the latest
+          setReadings(logbook); // Store all readings for the chart
         }
       } catch (err) {
         setError('Failed to load data. Please try again.');
@@ -203,19 +210,20 @@ export default function Dashboard() {
                 <h3 className="text-xl font-semibold mb-4">
                   Glucose Level Tracker
                 </h3>
-                <div className="h-64 bg-gray-200 rounded flex items-center justify-center">
-                  <p className="text-gray-600">
-                    Glucose level chart will be added here
-                  </p>
-                </div>
-                <div className="mt-4 flex justify-between">
-                  <button className="text-blue-500 hover:text-blue-600">
-                    Previous Day
-                  </button>
-                  <button className="text-blue-500 hover:text-blue-600">
-                    Next Day
-                  </button>
-                </div>
+                {error ? (
+                  <div className="p-4 bg-red-50 text-red-600 rounded-lg">
+                    {error}
+                  </div>
+                ) : readings.length === 0 && !loading ? (
+                  <div className="p-4 text-gray-500 text-center">
+                    No glucose readings available
+                  </div>
+                ) : (
+                  <GlucoseChart
+                    readings={readings}
+                    className="bg-white rounded-lg"
+                  />
+                )}
               </div>
 
               {/* Latest Reading Section */}
