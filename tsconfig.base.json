@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@diabetus/data-access/libre": ["libs/data-access/libre/src/index.ts"],
+      "@diabetus/shared": ["libs/shared/types/src/index.ts"],
       "@diabetus/ui": ["libs/ui/components/src/index.ts"],
       "@diabetus/ui/server": ["libs/ui/components/src/server.ts"]
     }
