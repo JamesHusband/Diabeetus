@@ -45,7 +45,7 @@ clean: ## Clean build artifacts and dependencies
 # Start development servers
 dev: ## Start development servers
 	@echo "$(BLUE)Starting development servers...$(RESET)"
-	pnpm exec nx run-many --target=serve --projects=frontend,ApiGateway --parallel=2
+	pnpm exec nx run-many --target=serve --projects=diabetus,ApiGateway --parallel=2
 
 # Run all tests
 test: ## Run all tests
@@ -70,7 +70,7 @@ serve-all: ## Serve all applications
 # Run end-to-end tests
 e2e: ## Run end-to-end tests
 	@echo "$(BLUE)Running end-to-end tests...$(RESET)"
-	pnpm exec nx run-many --target=e2e --projects=frontend-e2e,api-gateway-e2e
+	pnpm exec nx run-many --target=e2e --projects=diabetus-e2e,api-gateway-e2e
 
 # Run all test jobs
 testsuite: test lint e2e ## Run all test jobs

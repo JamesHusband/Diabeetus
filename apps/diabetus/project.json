@@ -1,32 +1,30 @@
 {
-  "name": "frontend",
+  "name": "diabetus",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/frontend",
+  "sourceRoot": "apps/diabetus",
   "projectType": "application",
-  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/frontend"
+        "outputPath": "dist/apps/diabetus"
       }
     },
     "serve": {
       "executor": "@nx/next:server",
-      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend:build",
+        "buildTarget": "diabetus:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend:build:development",
+          "buildTarget": "diabetus:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "frontend:build:production",
+          "buildTarget": "diabetus:build:production",
           "dev": false
         }
       }

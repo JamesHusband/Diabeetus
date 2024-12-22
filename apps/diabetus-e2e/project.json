@@ -1,0 +1,8 @@
+{
+  "name": "diabetus-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/diabetus-e2e/src",
+  "projectType": "application",
+  "implicitDependencies": ["diabetus"],
+  "// targets": "to see all targets run: nx show project diabetus-e2e --web"
+}

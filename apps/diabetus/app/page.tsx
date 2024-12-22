@@ -1,4 +1,4 @@
-import { Welcome } from '@frontend/ui';
+import { Welcome } from '@diabetus/ui';
 
 export default function Index() {
   return (

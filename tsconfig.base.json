@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@frontend/ui": ["libs/ui/components/src/index.ts"],
-      "@frontend/ui/server": ["libs/ui/components/src/server.ts"],
-      "@frontend/data-access": ["libs/data-access/api-example/src/index.ts"]
+      "@diabetus/ui": ["libs/ui/components/src/index.ts"],
+      "@diabetus/ui/server": ["libs/ui/components/src/server.ts"],
+      "@diabetus/data-access": ["libs/data-access/api-example/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,7 +1,7 @@
 # DIABETUS
 
 <div align="center">
-  <img src="public/assets/readme.webp" alt="Diabetus Dashboard">
+  <img src=".github/readme.webp" alt="Diabetus Dashboard" width="100%">
   <h3>"So easy my Dad can use it!"</h3>
 </div>
 
@@ -52,10 +52,26 @@ Diabetes affects how our body processes glucose (blood sugar), our main source o
 ### Understanding the Glucose Lag
 
 <div align="center">
-  <img src="public/assets/turtle-hare.webp" alt="Blood Glucose vs Interstitial Fluid - The Tortoise and the Hare" width="400">
+  <img src=".github/turtle-hare.webp" alt="Blood Glucose vs Interstitial Fluid - The Tortoise and the Hare" width="400">
 </div>
 
 When using continuous glucose monitoring (CGM) systems like the FreeStyle Libre, readings have a natural 10-15 minute lag as they measure interstitial fluid glucose rather than blood glucose.
+
+Think of it like a race between a hare (blood glucose) and a tortoise (interstitial fluid):
+
+- Blood glucose levels change rapidly after eating or insulin
+- Interstitial fluid glucose follows the same pattern, but 10-15 minutes behind
+- This lag is completely normal and expected
+- The gap can be wider during rapid glucose changes
+
+### True Source of Truth: Manual Blood Levels
+
+Diabetus bridges the gap between interstitial glucose readings and finger-prick tests. With this feature, users can:
+
+- Input manual blood glucose readings
+- Compare interstitial and blood glucose side by side
+- Spot patterns and discrepancies
+- Establish a "true source of truth" for confidence in management
 
 ## Technical Integration
 
@@ -74,14 +90,14 @@ Diabetus leverages the unofficial LibreView API to provide:
 ```
 diabetus/
 ├── apps/
-│   ├── frontend/        # @frontend/source - Next.js frontend application
-│   ├── frontend-e2e/    # Frontend end-to-end tests
+│   ├── diabetus/        # @diabetus/source - Next.js frontend application
+│   ├── diabetus-e2e/    # Frontend end-to-end tests
 │   ├── api-gateway/     # ApiGateway - LibreView integration and routing
 │   └── api-gateway-e2e/ # API gateway end-to-end tests
 ├── libs/
-│   ├── data-access/     # @frontend/data-access - API implementation
+│   ├── data-access/     # @diabetus/data-access - API implementation
 │   │   └── libreview/   # LibreView API integration module
-│   └── ui/             # @frontend/ui - Shared UI components
+│   └── ui/             # @diabetus/ui - Shared UI components
 │       └── components/ # React components with Storybook documentation
 ```
 
@@ -124,17 +140,17 @@ make storybook  - Start Storybook server
 
 ### Import Rules 📦
 
-1. **Frontend App** (`apps/frontend/`):
+1. **Frontend App** (`apps/diabetus/`):
 
    ```typescript
-   import { ComponentName } from '@frontend/ui';
-   import { routeName } from '@frontend/data-access';
+   import { ComponentName } from '@diabetus/ui';
+   import { routeName } from '@diabetus/data-access';
    ```
 
 2. **API Gateway** (`apps/api-gateway/`):
 
    ```typescript
-   import { routeName } from '@frontend/data-access';
+   import { routeName } from '@diabetus/data-access';
    ```
 
 3. **UI Library** (`libs/ui/components/`):
