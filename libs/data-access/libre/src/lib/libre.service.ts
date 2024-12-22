@@ -4,7 +4,7 @@ import {
   LogbookResponse,
   LoginResponse,
   ConnectionsResponse,
-} from './types';
+} from '@diabetus/shared/types';
 
 const createClient = (config: LibreConfig): AxiosInstance => {
   const client = axios.create({

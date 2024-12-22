@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import {
   Home,
@@ -9,15 +10,102 @@ import {
   Bell,
   X,
   User,
+  Loader2,
+  Clock,
 } from 'lucide-react';
+import { fetchPatientInfo, fetchLogbook } from './api/api';
+import { PatientInfo, LogbookEntry } from '@diabetus/shared/types';
 
-export default function Index() {
+export default function Dashboard() {
+  const getTrendArrowLabel = (trendArrow: number): string => {
+    switch (trendArrow) {
+      case 1:
+        return '↑↑'; // Rising quickly
+      case 2:
+        return '↑'; // Rising
+      case 3:
+        return '→'; // Stable
+      case 4:
+        return '↓'; // Falling
+      case 5:
+        return '↓↓'; // Falling quickly
+      default:
+        return '?';
+    }
+  };
+
+  // Convert mg/dL to mmol/L
+  const mgDlToMmol = (mgDl: number): number => {
+    return Number((mgDl / 18.0182).toFixed(1));
+  };
+
+  // Format glucose value with appropriate unit
+  const formatGlucose = (mgDl: number): string => {
+    return `${mgDlToMmol(mgDl)} mmol/L`;
+  };
+
+  // Format target range in mmol/L
+  const formatTargetRange = (low: number, high: number): string => {
+    return `${mgDlToMmol(low)}-${mgDlToMmol(high)} mmol/L`;
+  };
+
   const [activeTab, setActiveTab] = useState('home');
   const [showNotifications, setShowNotifications] = useState(false);
-  // const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
-  // const [latestReading, setLatestReading] = useState<LogbookEntry | null>(null);
+  const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
+  const [latestReading, setLatestReading] = useState<LogbookEntry | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch patient info first (this will ensure we're initialized)
+        const info = await fetchPatientInfo();
+        if (!info) {
+          throw new Error('Failed to load patient information');
+        }
+        setPatientInfo(info);
+
+        // Then fetch logbook
+        const logbook = await fetchLogbook();
+        if (logbook.length > 0) {
+          setLatestReading(logbook[0]); // Assuming the first entry is the latest
+        }
+      } catch (err) {
+        setError('Failed to load data. Please try again.');
+        console.error('Error loading data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  const getReadingColor = (
+    value: number,
+    targetLow: number,
+    targetHigh: number
+  ) => {
+    const mmolValue = mgDlToMmol(value);
+    const mmolLow = mgDlToMmol(targetLow);
+    const mmolHigh = mgDlToMmol(targetHigh);
+
+    if (mmolValue < mmolLow) return 'text-red-500';
+    if (mmolValue > mmolHigh) return 'text-yellow-500';
+    return 'text-green-500';
+  };
+
+  const formatTimestamp = (timestamp: string) => {
+    return new Date(timestamp).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
@@ -26,11 +114,35 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-blue-600">Diabetus</h1>
           <div className="flex items-center space-x-4">
+            {loading ? (
+              <div className="flex items-center">
+                <Loader2 className="h-5 w-5 text-gray-500 animate-spin" />
+                <span className="ml-2 text-sm text-gray-500">Loading...</span>
+              </div>
+            ) : error ? (
+              <div className="text-red-500 text-sm">{error}</div>
+            ) : (
+              patientInfo && (
+                <div className="flex items-center">
+                  <User className="h-5 w-5 text-gray-500 mr-2" />
+                  <div>
+                    <p className="text-sm font-medium">{`${patientInfo.firstName} ${patientInfo.lastName}`}</p>
+                    <p className="text-xs text-gray-500">
+                      Target:{' '}
+                      {formatTargetRange(
+                        patientInfo.targetLow,
+                        patientInfo.targetHigh
+                      )}
+                    </p>
+                  </div>
+                </div>
+              )
+            )}
             <div className="relative">
               <button
                 className="text-gray-500 hover:text-blue-600"
                 aria-label="Notifications"
-                // onClick={() => setShowNotifications(!showNotifications)}
+                onClick={() => setShowNotifications(!showNotifications)}
               >
                 <Bell className="h-6 w-6" />
               </button>
@@ -109,7 +221,7 @@ export default function Index() {
               {/* Latest Reading Section */}
               <div className="md:col-span-1 bg-white shadow rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-4">Latest Reading</h3>
-                {/* {loading ? (
+                {loading ? (
                   <div className="h-64 flex items-center justify-center">
                     <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
                   </div>
@@ -141,7 +253,7 @@ export default function Index() {
                   <div className="h-64 flex items-center justify-center text-gray-500">
                     No reading available
                   </div>
-                )} */}
+                )}
               </div>
             </div>
 
@@ -179,7 +291,7 @@ export default function Index() {
       <nav className="bg-white shadow-lg fixed bottom-0 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-around">
-            {/* <button
+            <button
               onClick={() => setActiveTab('home')}
               className={`py-4 px-2 text-center ${
                 activeTab === 'home' ? 'text-blue-500' : 'text-gray-500'
@@ -188,7 +300,7 @@ export default function Index() {
             >
               <Home className="h-6 w-6 mx-auto" />
               <span className="text-xs">Home</span>
-            </button> */}
+            </button>
             <button
               onClick={() => setActiveTab('trends')}
               className={`py-4 px-2 text-center ${

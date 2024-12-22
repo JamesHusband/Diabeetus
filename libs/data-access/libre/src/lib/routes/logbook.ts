@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { LibreService } from '../types';
+import { LibreService } from '@diabetus/shared/types';
 
 export const logbookRoute = (libreService: LibreService) => {
   const router = Router();
