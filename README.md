@@ -1,4 +1,11 @@
-<img src=".github/nx-strap.png" alt="NX Strap - A NX Monorepo Boilerplate" width="100%" />
+# DIABETUS
+
+<div align="center">
+  <img src="public/assets/readme.webp" alt="Diabetus Dashboard">
+  <h3>"So easy my Dad can use it!"</h3>
+</div>
+
+> **IMPORTANT**: This app supports diabetes management but should not replace professional medical advice. Always consult healthcare providers before making changes to your diabetes management routine.
 
 [![NX](https://img.shields.io/badge/NX-143055?style=for-the-badge&logo=nx&logoColor=white)](https://nx.dev)
 [![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
@@ -6,74 +13,113 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org)
-[![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io)
+[![Libre Integration](https://img.shields.io/badge/Integration-LibreView-blue?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNY2CgNXAmUf0pIP5PACcDMSJWwQIgZgTiB0D8C4jvA/EcIM4G4t9QsQdQOQao/AtA/B6IzwLxLyDmgBoKwv+gtBxU7DQQGwIxJ5T/B4jvAvEKkAFCUPwBiNcC8RcgFoYaygvE4lD6GxAfB+JoIPYFYgBg7Vc3lHhkjQAAAABJRU5ErkJggg==)](https://www.libreview.com/)
 
-# NX Strap - A Modern NX Monorepo Boilerplate
+## What is Diabetus?
 
-### Features ✨
+Diabetus is a parent-friendly diabetes management application designed with simplicity in mind. It helps you monitor, understand, and manage diabetes by turning complex glucose data into clear, actionable insights.
 
-- 🏗️ **NX Monorepo Structure** - Efficient workspace organization for optimal code sharing and maintenance
-- ⚡ **Next.js Frontend** - Server-side rendered React application with static generation capabilities
-- 🔐 **Express Gateway** - Dynamic API gateway for modular request routing and handling
-- 📦 **Modular APIs** - Self-contained API libraries that seamlessly integrate with the gateway
-- 🎨 **Modern Styling** - Responsive and customizable designs using TailwindCSS
-- 🧪 **Full Test Suite** - Jest unit testing and Cypress E2E testing integration
-- 📈 **Scalable Architecture** - Enterprise-ready design with clear separation of concerns
-- 🔄 **Continuous Integration** - Automated testing pipeline using GitHub Actions
+## Features ✨
+
+### Core Features
+
+- 📊 **Real-Time Monitoring** - Automatic sync with Libre device and instant access to glucose levels
+- 📈 **Visual Analysis & Insights** - Advanced pattern recognition and predictive glucose trend modeling
+- 🍎 **Smart Management Tools** - Carbohydrate tracking, meal timing recommendations, and treatment history
+- 📱 **Family-Friendly Experience** - Simple, intuitive interface with clear visualizations
+
+### Technical Features
+
+- 🏗️ **NX Monorepo Structure** - Efficient workspace organization for optimal code sharing
+- ⚡ **Next.js Frontend** - Server-side rendered React application with modern UI
+- 🔐 **Express Gateway** - Dynamic API gateway for LibreView integration
+- 📦 **Modular APIs** - Self-contained API libraries for glucose data management
+- 🎨 **Modern Styling** - Responsive and accessible designs using TailwindCSS
+- 🧪 **Full Test Suite** - Comprehensive testing with Jest and Cypress
+- 🔄 **Continuous Integration** - Automated testing and deployment pipeline
 - 📚 **Storybook** - Interactive component development and documentation
+
+## Understanding Diabetes
+
+Diabetes affects how our body processes glucose (blood sugar), our main source of energy. The app helps monitor and manage:
+
+- **Insulin** production and effectiveness
+- **Blood glucose levels** after meals
+- **Physical activity** impact
+- **Stress** and **hormonal** effects
+- **Sleep** and daily routine impacts
+
+### Understanding the Glucose Lag
+
+<div align="center">
+  <img src="public/assets/turtle-hare.webp" alt="Blood Glucose vs Interstitial Fluid - The Tortoise and the Hare" width="400">
+</div>
+
+When using continuous glucose monitoring (CGM) systems like the FreeStyle Libre, readings have a natural 10-15 minute lag as they measure interstitial fluid glucose rather than blood glucose.
+
+## Technical Integration
+
+### LibreView Integration
+
+Diabetus leverages the unofficial LibreView API to provide:
+
+- Continuous glucose monitoring data
+- Historical data analysis
+- Trend detection
+- Real-time alerts
+- Pattern recognition
+
+### Project Structure 📁
+
+```
+diabetus/
+├── apps/
+│   ├── frontend/        # @frontend/source - Next.js frontend application
+│   ├── frontend-e2e/    # Frontend end-to-end tests
+│   ├── api-gateway/     # ApiGateway - LibreView integration and routing
+│   └── api-gateway-e2e/ # API gateway end-to-end tests
+├── libs/
+│   ├── data-access/     # @frontend/data-access - API implementation
+│   │   └── libreview/   # LibreView API integration module
+│   └── ui/             # @frontend/ui - Shared UI components
+│       └── components/ # React components with Storybook documentation
+```
 
 ### Getting Started 🚀
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/yourusername/nx-strap.git
-   cd nx-strap
+   git clone https://github.com/yourusername/diabetus.git
+   cd diabetus
    ```
-2. Rename the project:
-   - Search and replace all instances of `nx-strap` with your `project_name`
-   - Update the project name in `package.json`
-   - Update the project name in `nx.json`
-3. Run `make install` to install all dependencies
-4. Rename the `.env.example` file to `.env` and **populate it with your own values**
-5. Run `make dev` to start both the frontend and API gateway in parallel
+2. Install dependencies:
+   ```bash
+   make install
+   ```
+3. Configure environment:
+   - Copy `.env.example` to `.env`
+   - Add your LibreView API credentials
+4. Start development:
+   ```bash
+   make dev
+   ```
 
-For a list of all available development commands, run `make help`.
+For all available commands, run `make help`.
 
 ### Development Commands 🛠️
 
-The project includes a Makefile for common development tasks. Running `make help` shows all available commands:
-
 ```bash
-NX Strap Development Commands:
+Development Commands:
 make install    - Install all dependencies
-make clean      - Clean build artifacts and dependencies
+make clean      - Clean build artifacts
 make dev        - Start development servers
 make test       - Run all tests
 make lint       - Run linting
 make build      - Build all applications
 make serve-all  - Serve all applications
 make e2e        - Run end-to-end tests
-make testsuite  - Run all test jobs (test, lint, e2e)
-make storybook  - Start Storybook development server
-make build-storybook - Build Storybook for production
-```
-
-Feel free to contribute or suggest improvements! 🤝
-
-### Project Structure 📁
-
-```
-project_name/
-├── apps/
-│   ├── frontend/        # @nx-strap/source - Next.js frontend application
-│   ├── frontend-e2e/    # Frontend end-to-end tests
-│   ├── api-gateway/     # ApiGateway - Routes requests to appropriate API implementations
-│   └── api-gateway-e2e/ # API gateway end-to-end tests
-├── libs/
-│   ├── data-access/     # @nx-strap/data-access - API implementation libraries
-│   │   └── api-example/ # Example API module that injects routes into the gateway
-│   └── ui/             # @nx-strap/ui - Shared UI components
-│       └── components/ # React components with Storybook documentation
+make testsuite  - Run all test jobs
+make storybook  - Start Storybook server
 ```
 
 ### Import Rules 📦
@@ -94,31 +140,19 @@ project_name/
 3. **UI Library** (`libs/ui/components/`):
 
    ```typescript
-   // Internal imports
    import { Component } from './lib/component-name';
-   // Export path: @frontend/ui
    ```
 
-4. **Data Access Library** (`libs/data-access/api-example/`):
+4. **Data Access Library** (`libs/data-access/libreview/`):
    ```typescript
-   // Internal imports
    import { route } from './lib/route-name';
-   // Export path: @frontend/data-access
    ```
 
-### Architecture Overview 🏛️
+## Resources & Documentation
 
-The project follows a modular API architecture where:
+- [Official LibreView Platform](https://www.libreview.com/)
+- [Unofficial LibreView API Documentation](https://libreview-unofficial.stoplight.io/)
+- [NX Documentation](https://nx.dev/getting-started/intro)
+- [Next.js Documentation](https://nextjs.org/docs)
 
-- The `api-gateway` acts as a central routing layer, handling incoming HTTP requests
-- API implementations live in the `data-access` directory as separate libraries
-- Each API module injects its routes into the gateway at runtime
-- This separation allows for:
-  - Independent development and testing of API modules
-  - Clear boundaries between different API domains
-  - Easy addition of new API functionality without modifying the gateway
-  - Better code organization and maintainability
-
-### Credits 🙏
-
-This project aims to provide a robust starting point for building scalable applications using NX monorepo architecture. Special thanks to the NX, Next.js, and Express.js communities for their excellent tools and documentation.
+> **Developer Note**: The API Gateway architecture ensures secure and efficient access to LibreView data while providing a foundation for future service integrations.
