@@ -11,6 +11,9 @@ importers:
       axios:
         specifier: ^1.6.0
         version: 1.7.9
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       express:
         specifier: ^4.18.1
         version: 4.21.2
