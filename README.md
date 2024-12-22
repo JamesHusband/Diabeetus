@@ -95,8 +95,14 @@ diabetus/
 │   ├── api-gateway/     # ApiGateway - LibreView integration and routing
 │   └── api-gateway-e2e/ # API gateway end-to-end tests
 ├── libs/
-│   ├── data-access/     # @diabetus/data-access - API implementation
-│   │   └── libreview/   # LibreView API integration module
+│   ├── data-access/
+│   │   └── libre/       # @diabetus/data-access/libre - LibreView API integration
+│   │       ├── src/
+│   │       │   ├── lib/
+│   │       │   │   ├── types.ts        # LibreView API types
+│   │       │   │   ├── routes.ts       # API route definitions
+│   │       │   │   └── libre.service.ts # LibreView service implementation
+│   │       │   └── index.ts
 │   └── ui/             # @diabetus/ui - Shared UI components
 │       └── components/ # React components with Storybook documentation
 ```
@@ -144,13 +150,13 @@ make storybook  - Start Storybook server
 
    ```typescript
    import { ComponentName } from '@diabetus/ui';
-   import { routeName } from '@diabetus/data-access';
+   import { LibreService } from '@diabetus/data-access/libre';
    ```
 
 2. **API Gateway** (`apps/api-gateway/`):
 
    ```typescript
-   import { routeName } from '@diabetus/data-access';
+   import { libreRoutes } from '@diabetus/data-access/libre';
    ```
 
 3. **UI Library** (`libs/ui/components/`):
@@ -159,9 +165,10 @@ make storybook  - Start Storybook server
    import { Component } from './lib/component-name';
    ```
 
-4. **Data Access Library** (`libs/data-access/libreview/`):
+4. **LibreView Integration** (`libs/data-access/libre/`):
    ```typescript
-   import { route } from './lib/route-name';
+   import { LibreViewTypes } from './lib/types';
+   import { LibreService } from './lib/libre.service';
    ```
 
 ## Resources & Documentation
