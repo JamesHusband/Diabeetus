@@ -1,4 +1,4 @@
-# DIABETUS
+DIABETUS
 
 <div align="center">
   <img src=".github/readme.webp" alt="Diabetus Dashboard" width="100%">
@@ -14,24 +14,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org)
 [![Libre Integration](https://img.shields.io/badge/Integration-LibreView-blue?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNY2CgNXAmUf0pIP5PACcDMSJWwQIgZgTiB0D8C4jvA/EcIM4G4t9QsQdQOQao/AtA/B6IzwLxLyDmgBoKwv+gtBxU7DQQGwIxJ5T/B4jvAvEKkAFCUPwBiNcC8RcgFoYaygvE4lD6GxAfB+JoIPYFYgBg7Vc3lHhkjQAAAABJRU5ErkJggg==)](https://www.libreview.com/)
-[![Apple Health](https://img.shields.io/badge/Works%20with-Apple%20Health-black?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/ios/health/)
-
-## UPDATE: Official Libre API via Vital 🎉
-
-We're excited to announce the discovery of an official Libre API provided through Vital (https://docs.tryvital.io/). This official integration will enable:
-
-- **Comprehensive Health Data**: Access to Apple Health and Android health metrics
-- **Extended Metrics**: Support for activity, body measurements, meals, sleep, workouts, and vital signs
-- **Rich Biometric Data**: Including blood pressure, oxygen, cholesterol, ECG, glucose, insulin, heart rate, HRV, and more
-
-**Future Integration Plan**: While our prototype currently uses the LibreView integration, we plan to migrate to the official Vital API in the next phase. This will provide:
-
-- More reliable and officially supported data access
-- Broader health metrics integration
-- Enhanced data accuracy and consistency
-- Expanded platform compatibility
-
-Stay tuned for updates as we work on this integration!
+<a href="https://www.apple.com/ios/health/"><img src=".github/apple-health.png" alt="Apple Health" height="28"></a>
 
 ## What is Diabetus?
 
@@ -145,6 +128,19 @@ diabetus/
    ```
 
 For all available commands, run `make help`.
+
+### Development Data 🧪
+
+During development, you can use Vital API's Synthetic Data to test and develop features without requiring live user data. This ensures a consistent development experience and helps with testing edge cases.
+
+#### Synthetic Data Features:
+
+- Pre-generated realistic glucose patterns
+- Simulated meal and activity impacts
+- Various diabetes scenarios and patterns
+- Consistent test data across development
+
+> **Note**: While Vital API integration is planned for future releases, the synthetic data feature will be available to help developers test and build features without requiring real user data. Learn more about Vital's test data at their [official documentation](https://docs.tryvital.io/wearables/providers/test_data).
 
 ### Development Commands 🛠️
 
