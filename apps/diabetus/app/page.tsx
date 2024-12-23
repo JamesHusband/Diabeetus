@@ -20,6 +20,7 @@ import {
   GlucoseReading,
 } from '@diabetus/shared/types';
 import { fetchPatientInfo, fetchLogbook } from './api/api';
+import Image from 'next/image';
 
 export default function Dashboard() {
   const getTrendArrowLabel = (trendArrow: number): string => {
@@ -119,7 +120,14 @@ export default function Dashboard() {
       {/* Header */}
       <header className="bg-white shadow-sm relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">Diabetus</h1>
+          <Image
+            src="/assets/logo.webp"
+            alt="Diabetus"
+            width={150}
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
           <div className="flex items-center space-x-4">
             {loading ? (
               <div className="flex items-center">
