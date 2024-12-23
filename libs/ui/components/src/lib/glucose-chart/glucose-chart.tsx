@@ -37,11 +37,13 @@ export function GlucoseChart({
   className,
 }: GlucoseChartProps) {
   const data = {
-    labels: readings.map((reading) => formatTimestamp(reading.Timestamp)),
+    labels: [...readings]
+      .reverse()
+      .map((reading) => formatTimestamp(reading.Timestamp)),
     datasets: [
       {
         label: 'Glucose Level (mmol/L)',
-        data: readings.map((reading) => reading.Value),
+        data: [...readings].reverse().map((reading) => reading.Value),
         borderColor: 'rgb(59, 130, 246)',
         backgroundColor: 'rgba(59, 130, 246, 0.5)',
         tension: 0.3,

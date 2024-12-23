@@ -14,6 +14,24 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org)
 [![Libre Integration](https://img.shields.io/badge/Integration-LibreView-blue?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNY2CgNXAmUf0pIP5PACcDMSJWwQIgZgTiB0D8C4jvA/EcIM4G4t9QsQdQOQao/AtA/B6IzwLxLyDmgBoKwv+gtBxU7DQQGwIxJ5T/B4jvAvEKkAFCUPwBiNcC8RcgFoYaygvE4lD6GxAfB+JoIPYFYgBg7Vc3lHhkjQAAAABJRU5ErkJggg==)](https://www.libreview.com/)
+[![Apple Health](https://img.shields.io/badge/Works%20with-Apple%20Health-black?style=for-the-badge&logo=apple&logoColor=white)](https://www.apple.com/ios/health/)
+
+## UPDATE: Official Libre API via Vital 🎉
+
+We're excited to announce the discovery of an official Libre API provided through Vital (https://docs.tryvital.io/). This official integration will enable:
+
+- **Comprehensive Health Data**: Access to Apple Health and Android health metrics
+- **Extended Metrics**: Support for activity, body measurements, meals, sleep, workouts, and vital signs
+- **Rich Biometric Data**: Including blood pressure, oxygen, cholesterol, ECG, glucose, insulin, heart rate, HRV, and more
+
+**Future Integration Plan**: While our prototype currently uses the LibreView integration, we plan to migrate to the official Vital API in the next phase. This will provide:
+
+- More reliable and officially supported data access
+- Broader health metrics integration
+- Enhanced data accuracy and consistency
+- Expanded platform compatibility
+
+Stay tuned for updates as we work on this integration!
 
 ## What is Diabetus?
 
