@@ -13,6 +13,7 @@ DIABETUS
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org)
+
 <a href="https://www.libreview.com/"><img src=".github/libre-view.svg" alt="Libre Integration" height="28"></a>
 <a href="https://www.apple.com/ios/health/"><img src=".github/apple-health.png" alt="Apple Health" height="28"></a>
 
@@ -102,8 +103,8 @@ diabetus/
 │   │       │   ├── lib/
 │   │       │   │   ├── types.ts        # LibreView API types
 │   │       │   │   ├── routes.ts       # API route definitions
-│   │       │   │   └── libre.service.ts # LibreView service implementation
-│   │       ���   └── index.ts
+���   │       │   │   └── libre.service.ts # LibreView service implementation
+│   │       │   └── index.ts
 │   └── ui/             # @diabetus/ui - Shared UI components
 │       └── components/ # React components with Storybook documentation
 ```
