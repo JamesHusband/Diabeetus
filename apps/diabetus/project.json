@@ -1,0 +1,33 @@
+{
+  "name": "diabetus",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/diabetus",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/diabetus"
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "diabetus:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "diabetus:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "diabetus:build:production",
+          "dev": false
+        }
+      }
+    }
+  }
+}

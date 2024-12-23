@@ -1,0 +1,130 @@
+# NX Strap Project Rules
+
+## Tech Stack Expertise & Documentation
+
+You are an expert in:
+
+- NX Monorepo: https://nx.dev/getting-started/intro
+- Next.js (App Router): https://nextjs.org/docs
+- Express.js: https://expressjs.com/en/4x/api.html
+- TypeScript: https://www.typescriptlang.org/docs/
+- Tailwind CSS: https://tailwindcss.com/docs
+- Storybook: https://storybook.js.org/docs/react/get-started/install
+- Jest: https://jestjs.io/docs/getting-started
+- React Testing Library: https://testing-library.com/docs/react-testing-library/intro/
+- pnpm: https://pnpm.io/motivation
+
+Always refer to the latest documentation and best practices when providing guidance.
+Ensure compatibility between versions:
+
+- NX 20+
+- Next.js 14+
+- React 18+
+- TypeScript 5+
+- Node.js 18+
+
+## Project Structure & Namespaces
+
+```typescript
+project_name/
+├── apps/
+│   ├── frontend/                    // @frontend/source
+│   │   └── app/
+│   │       └── {component}/
+│   │           ├── page.tsx        // import { Welcome } from '@frontend/ui'
+│   │           └── page.spec.tsx   // Component tests
+│   │
+│   └── api-gateway/                // ApiGateway
+│       └── src/
+│           └── {feature}/
+│               ├── main.ts         // import { healthRoutes, userRoutes } from '@frontend/data-access'
+│               └── main.spec.ts    // API tests
+│
+├── libs/
+│   ├── data-access/                // @frontend/data-access
+│   │   └── api-example/
+│   │       └── src/
+│   │           ├── lib/
+│   │           │   ├── health/
+│   │           │   │   ├── health.routes.ts        // export { healthRoutes }
+│   │           │   │   └── health.routes.spec.ts   // Route tests
+│   │           │   └── users/
+│   │           │       ├── users.routes.ts         // export { userRoutes }
+│   │           │       └── users.routes.spec.ts    // Route tests
+│   │           └── index.ts
+│   │
+│   └── ui/                         // @frontend/ui
+│       └── components/             // UI-Shared (project name)
+│           └── src/
+│               ├── lib/
+│               │   └── {component}/
+│               │       ├── {component}.tsx           // Component implementation
+│               │       ├── {component}.spec.tsx      // Component tests
+│               │       └── {component}.stories.tsx   // Storybook stories
+│               └── index.ts
+```
+
+## Import Rules
+
+1. **Frontend App** (`apps/frontend/`):
+
+   ```typescript
+   import { ComponentName } from '@frontend/ui';
+   import { routeName } from '@frontend/data-access';
+   ```
+
+2. **API Gateway** (`apps/api-gateway/`):
+
+   ```typescript
+   import { routeName } from '@frontend/data-access';
+   ```
+
+3. **UI Library** (`libs/ui/components/`):
+
+   ```typescript
+   // Internal imports
+   import { Component } from './lib/component-name';
+   // Export path: @frontend/ui
+   ```
+
+4. **Data Access Library** (`libs/data-access/api-example/`):
+   ```typescript
+   // Internal imports
+   import { route } from './lib/route-name';
+   // Export path: @frontend/data-access
+   ```
+
+## Linting Rules
+
+### GitHub Actions (`.github/workflows/main.yml`)
+
+- Required properties:
+  - `on` (trigger events)
+  - `jobs` (workflow jobs)
+
+### API Gateway (`apps/api-gateway/src/main.ts`)
+
+- Import data-access using `@frontend/data-access` namespace
+- Configure routes using Express Router
+- Handle CORS and middleware setup
+
+### Generator Rules (`tools/nx-strap/src/generators/init/generator.ts`)
+
+- Follow NX generator patterns
+- Include schema validation
+- Handle file templating
+
+## Project Names
+
+- Frontend App: `@frontend/source`
+- API Gateway: `ApiGateway`
+- UI Library: `UI-Shared`
+- Data Access: `data-access`
+
+## Global Namespace
+
+All shared code uses the `@frontend` namespace:
+
+- `@frontend/ui`
+- `@frontend/ui/server`
+- `@frontend/data-access`
