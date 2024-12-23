@@ -13,7 +13,7 @@ DIABETUS
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Storybook](https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white)](https://storybook.js.org)
-[![Libre Integration](https://img.shields.io/badge/Integration-LibreView-blue?style=for-the-badge&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAB5SURBVDiNY2CgNXAmUf0pIP5PACcDMSJWwQIgZgTiB0D8C4jvA/EcIM4G4t9QsQdQOQao/AtA/B6IzwLxLyDmgBoKwv+gtBxU7DQQGwIxJ5T/B4jvAvEKkAFCUPwBiNcC8RcgFoYaygvE4lD6GxAfB+JoIPYFYgBg7Vc3lHhkjQAAAABJRU5ErkJggg==)](https://www.libreview.com/)
+<a href="https://www.libreview.com/"><img src=".github/libre-view.svg" alt="Libre Integration" height="28"></a>
 <a href="https://www.apple.com/ios/health/"><img src=".github/apple-health.png" alt="Apple Health" height="28"></a>
 
 ## What is Diabetus?
@@ -103,7 +103,7 @@ diabetus/
 │   │       │   │   ├── types.ts        # LibreView API types
 │   │       │   │   ├── routes.ts       # API route definitions
 │   │       │   │   └── libre.service.ts # LibreView service implementation
-│   │       │   └── index.ts
+│   │       ���   └── index.ts
 │   └── ui/             # @diabetus/ui - Shared UI components
 │       └── components/ # React components with Storybook documentation
 ```
