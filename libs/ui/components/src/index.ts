@@ -1,1 +1,1 @@
-export * from './lib/glucose-chart/glucose-chart';
+export * from './lib/GlucoseChart/GlucoseChart';
