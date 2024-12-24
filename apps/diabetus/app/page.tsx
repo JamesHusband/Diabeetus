@@ -45,11 +45,6 @@ export default function Dashboard() {
     return Number((mgDl / 18.0182).toFixed(1));
   };
 
-  // Format glucose value with appropriate unit
-  const formatGlucose = (mgDl: number): string => {
-    return `${mgDlToMmol(mgDl)} mmol/L`;
-  };
-
   // Format target range in mmol/L
   const formatTargetRange = (low: number, high: number): string => {
     return `${mgDlToMmol(low)}-${mgDlToMmol(high)} mmol/L`;
