@@ -10,6 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
+  ScrollArea,
+  Separator,
+  Badge,
 } from '@diabetus/ui/elements';
 
 const { formatTargetRange } = Graph;
@@ -69,9 +72,12 @@ export function Header({ loading, error, patientInfo }: HeaderProps) {
             >
               <Bell className="h-6 w-6" />
             </Button>
-            <span className="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+            <Badge
+              variant="destructive"
+              className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center text-[10px]"
+            >
               3
-            </span>
+            </Badge>
           </div>
         </div>
       </div>
@@ -83,29 +89,33 @@ export function Header({ loading, error, patientInfo }: HeaderProps) {
             <DialogTitle>Notifications</DialogTitle>
             <DialogClose />
           </DialogHeader>
-          <div className="max-h-96 overflow-y-auto">
-            <div className="p-4 border-b border-gray-200">
-              <p className="font-medium">Glucose Level Alert</p>
-              <p className="text-sm text-gray-600">
-                Your glucose level is above target range.
-              </p>
-              <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
+          <ScrollArea className="h-[400px]">
+            <div className="space-y-4">
+              <div className="p-4">
+                <p className="font-medium">Glucose Level Alert</p>
+                <p className="text-sm text-gray-600">
+                  Your glucose level is above target range.
+                </p>
+                <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
+              </div>
+              <Separator />
+              <div className="p-4">
+                <p className="font-medium">Medication Reminder</p>
+                <p className="text-sm text-gray-600">
+                  It's time to take your evening medication.
+                </p>
+                <p className="text-xs text-gray-500 mt-1">1 hour ago</p>
+              </div>
+              <Separator />
+              <div className="p-4">
+                <p className="font-medium">Weekly Report</p>
+                <p className="text-sm text-gray-600">
+                  Your weekly health report is ready to view.
+                </p>
+                <p className="text-xs text-gray-500 mt-1">1 day ago</p>
+              </div>
             </div>
-            <div className="p-4 border-b border-gray-200">
-              <p className="font-medium">Medication Reminder</p>
-              <p className="text-sm text-gray-600">
-                It's time to take your evening medication.
-              </p>
-              <p className="text-xs text-gray-500 mt-1">1 hour ago</p>
-            </div>
-            <div className="p-4">
-              <p className="font-medium">Weekly Report</p>
-              <p className="text-sm text-gray-600">
-                Your weekly health report is ready to view.
-              </p>
-              <p className="text-xs text-gray-500 mt-1">1 day ago</p>
-            </div>
-          </div>
+          </ScrollArea>
         </DialogContent>
       </Dialog>
     </header>

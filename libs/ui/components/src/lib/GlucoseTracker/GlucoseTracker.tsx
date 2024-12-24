@@ -1,15 +1,16 @@
-import { Clock, Loader2 } from 'lucide-react';
 import { GlucoseChart } from '../GlucoseChart/GlucoseChart';
 import {
-  PatientInfo,
-  LogbookEntry,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  Skeleton,
+} from '@diabetus/ui/elements';
+import {
   GlucoseReading,
+  LogbookEntry,
+  PatientInfo,
 } from '@diabetus/shared/types';
-import { Graph, Units, Dates } from '@diabetus/shared/utils';
-
-const { getTrendArrowLabel, getReadingColor } = Graph;
-const { mgDlToMmol } = Units;
-const { formatTimestamp } = Dates;
 
 interface GlucoseTrackerProps {
   loading: boolean;
@@ -26,59 +27,110 @@ export function GlucoseTracker({
   latestReading,
   patientInfo,
 }: GlucoseTrackerProps) {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-      {/* Glucose Level Tracker */}
-      <div className="md:col-span-3 bg-white shadow rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Glucose Level Tracker</h3>
-        {error ? (
-          <div className="p-4 bg-red-50 text-red-600 rounded-lg">{error}</div>
-        ) : readings.length === 0 && !loading ? (
-          <div className="p-4 text-gray-500 text-center">
-            No glucose readings available
-          </div>
-        ) : (
-          <GlucoseChart readings={readings} className="bg-white rounded-lg" />
-        )}
-      </div>
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        {/* Latest Reading Card Loading State */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Latest Reading</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-8 w-32" />
+                <Skeleton className="h-3 w-40" />
+              </div>
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-6 w-36" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Latest Reading Section */}
-      <div className="md:col-span-1 bg-white shadow rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4">Latest Reading</h3>
-        {loading ? (
-          <div className="h-64 flex items-center justify-center">
-            <Loader2 className="h-8 w-8 text-blue-500 animate-spin" />
-          </div>
-        ) : error ? (
-          <div className="h-64 flex items-center justify-center text-red-500 text-center">
-            {error}
-          </div>
-        ) : latestReading && patientInfo ? (
-          <div className="h-64 flex flex-col items-center justify-center">
-            <div
-              className={`text-4xl font-bold mb-2 ${getReadingColor(
-                latestReading.ValueInMgPerDl,
-                patientInfo.targetLow,
-                patientInfo.targetHigh
-              )}`}
-            >
-              {mgDlToMmol(latestReading.ValueInMgPerDl)}
-              <span className="text-lg ml-1">mmol/L</span>
+        {/* Glucose Chart Loading State */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Glucose History</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="flex gap-2">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <Skeleton key={i} className="h-8 w-12" />
+                ))}
+              </div>
+              <Skeleton className="h-[400px] w-full" />
             </div>
-            <div className="text-2xl text-gray-600 mb-4">
-              {getTrendArrowLabel(latestReading.TrendArrow)}
-            </div>
-            <div className="flex items-center text-sm text-gray-500">
-              <Clock className="h-4 w-4 mr-1" />
-              {formatTimestamp(latestReading.Timestamp)}
-            </div>
-          </div>
-        ) : (
-          <div className="h-64 flex items-center justify-center text-gray-500">
-            No reading available
-          </div>
-        )}
+          </CardContent>
+        </Card>
       </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <Card>
+        <CardContent className="h-[400px] flex items-center justify-center">
+          <p className="text-red-500">{error}</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!readings.length || !latestReading || !patientInfo) {
+    return (
+      <Card>
+        <CardContent className="h-[400px] flex items-center justify-center">
+          <p className="text-gray-500">No glucose data available.</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Latest Reading Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Latest Reading</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-gray-500">Glucose Level</p>
+              <p className="text-2xl font-bold">{latestReading.Value} mmol/L</p>
+              <p className="text-xs text-gray-500">
+                {new Date(latestReading.Timestamp).toLocaleString()}
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Target Range</p>
+              <p className="text-lg">
+                {patientInfo.targetLow} - {patientInfo.targetHigh} mmol/L
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Glucose Chart Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Glucose History</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <GlucoseChart
+            readings={readings}
+            targetRange={{
+              low: patientInfo.targetLow,
+              high: patientInfo.targetHigh,
+            }}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

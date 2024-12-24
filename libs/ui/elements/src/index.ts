@@ -2,3 +2,8 @@ export * from './lib/button/button';
 export * from './lib/label/label';
 export * from './lib/dialog/dialog';
 export * from './lib/badge/badge';
+export * from './lib/input/input';
+export * from './lib/card/card';
+export * from './lib/scroll-area/scroll-area';
+export * from './lib/separator/separator';
+export * from './lib/skeleton/skeleton';

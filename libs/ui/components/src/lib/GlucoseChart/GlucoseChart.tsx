@@ -14,8 +14,8 @@ import {
 } from 'chart.js';
 import { GlucoseReading } from '@diabetus/shared/types';
 import { formatTimestamp } from './utils';
-import { useState } from 'react';
-import { Button, Label } from '@diabetus/ui/elements';
+import { useState, ChangeEvent } from 'react';
+import { Button, Label, Input, Card, CardContent } from '@diabetus/ui/elements';
 
 ChartJS.register(
   CategoryScale,
@@ -144,59 +144,71 @@ export function GlucoseChart({
   };
 
   return (
-    <div className={`space-y-4 ${className || ''}`}>
-      <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
-        <div className="flex gap-2">
-          {(['6h', '12h', '24h', '3d', '7d'] as TimeRange[]).map((range) => (
-            <Button
-              key={range}
-              onClick={() => setSelectedRange(range)}
-              variant={selectedRange === range ? 'default' : 'ghost'}
-              size="sm"
-            >
-              {range}
-            </Button>
-          ))}
-          <Button
-            onClick={() => setSelectedRange('custom')}
-            variant={selectedRange === 'custom' ? 'default' : 'ghost'}
-            size="sm"
-          >
-            Custom
-          </Button>
-        </div>
-        {selectedRange === 'custom' && (
-          <div className="flex items-center gap-2 ml-4">
-            <div className="grid gap-1.5">
-              <Label htmlFor="date-from">From</Label>
-              <input
-                id="date-from"
-                type="date"
-                value={customRange.from}
-                onChange={(e) =>
-                  setCustomRange((prev) => ({ ...prev, from: e.target.value }))
-                }
-                className="px-2 py-1 rounded border text-sm"
-              />
+    <Card className={className}>
+      <CardContent>
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+            <div className="flex gap-2">
+              {(['6h', '12h', '24h', '3d', '7d'] as TimeRange[]).map(
+                (range) => (
+                  <Button
+                    key={range}
+                    onClick={() => setSelectedRange(range)}
+                    variant={selectedRange === range ? 'default' : 'ghost'}
+                    size="sm"
+                  >
+                    {range}
+                  </Button>
+                )
+              )}
+              <Button
+                onClick={() => setSelectedRange('custom')}
+                variant={selectedRange === 'custom' ? 'default' : 'ghost'}
+                size="sm"
+              >
+                Custom
+              </Button>
             </div>
-            <div className="grid gap-1.5">
-              <Label htmlFor="date-to">To</Label>
-              <input
-                id="date-to"
-                type="date"
-                value={customRange.to}
-                onChange={(e) =>
-                  setCustomRange((prev) => ({ ...prev, to: e.target.value }))
-                }
-                className="px-2 py-1 rounded border text-sm"
-              />
-            </div>
+            {selectedRange === 'custom' && (
+              <div className="flex items-center gap-4 ml-4">
+                <div className="grid gap-1.5">
+                  <Label htmlFor="date-from">From</Label>
+                  <Input
+                    id="date-from"
+                    type="date"
+                    value={customRange.from}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setCustomRange((prev) => ({
+                        ...prev,
+                        from: e.target.value,
+                      }))
+                    }
+                    className="w-[160px]"
+                  />
+                </div>
+                <div className="grid gap-1.5">
+                  <Label htmlFor="date-to">To</Label>
+                  <Input
+                    id="date-to"
+                    type="date"
+                    value={customRange.to}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setCustomRange((prev) => ({
+                        ...prev,
+                        to: e.target.value,
+                      }))
+                    }
+                    className="w-[160px]"
+                  />
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <div className="h-[400px]">
-        <Line options={options} data={data} />
-      </div>
-    </div>
+          <div className="h-[400px]">
+            <Line options={options} data={data} />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
