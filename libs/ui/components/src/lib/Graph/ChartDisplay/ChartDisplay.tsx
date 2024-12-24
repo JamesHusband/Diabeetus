@@ -59,24 +59,6 @@ export function ChartDisplay({
         backgroundColor: 'rgba(59, 130, 246, 0.5)',
         tension: 0.3,
       },
-      ...(targetRange
-        ? [
-            {
-              label: 'Target Range',
-              data: Array(data.length).fill(targetRange.high),
-              borderColor: 'rgba(234, 179, 8, 0.5)',
-              borderDashed: [5, 5],
-              pointRadius: 0,
-            },
-            {
-              label: 'Target Range',
-              data: Array(data.length).fill(targetRange.low),
-              borderColor: 'rgba(234, 179, 8, 0.5)',
-              borderDashed: [5, 5],
-              pointRadius: 0,
-            },
-          ]
-        : []),
     ],
   };
 
