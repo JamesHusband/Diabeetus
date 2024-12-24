@@ -1,4 +1,3 @@
-import { GlucoseChart } from '../GlucoseChart/GlucoseChart';
 import {
   Card,
   CardHeader,
@@ -6,6 +5,7 @@ import {
   CardContent,
   Skeleton,
 } from '@diabetus/ui/elements';
+import { Graph } from '../Graph/Graph';
 import {
   GlucoseReading,
   LogbookEntry,
@@ -90,6 +90,11 @@ export function GlucoseTracker({
     );
   }
 
+  const graphData = readings.map((reading) => ({
+    value: reading.Value,
+    timestamp: reading.Timestamp,
+  }));
+
   return (
     <div className="space-y-6">
       {/* Latest Reading Card */}
@@ -116,21 +121,16 @@ export function GlucoseTracker({
         </CardContent>
       </Card>
 
-      {/* Glucose Chart Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Glucose History</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <GlucoseChart
-            readings={readings}
-            targetRange={{
-              low: patientInfo.targetLow,
-              high: patientInfo.targetHigh,
-            }}
-          />
-        </CardContent>
-      </Card>
+      {/* Glucose Chart */}
+      <Graph
+        data={graphData}
+        targetRange={{
+          low: patientInfo.targetLow,
+          high: patientInfo.targetHigh,
+        }}
+        yAxisLabel="Glucose Level (mmol/L)"
+        title="Glucose History"
+      />
     </div>
   );
 }
