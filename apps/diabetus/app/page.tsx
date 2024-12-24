@@ -8,7 +8,7 @@ import {
   PieChart,
   MessageSquare,
 } from 'lucide-react';
-import { GlucoseTracker, Header } from '@diabetus/ui';
+import { GlucoseTracker, Header, Chatbot } from '@diabetus/ui';
 import {
   PatientInfo,
   LogbookEntry,
@@ -88,15 +88,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Chatbot Section */}
-            <div className="bg-white shadow rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-4">Chatbot</h3>
-              <div className="h-40 bg-gray-200 rounded flex items-center justify-center">
-                <p className="text-gray-600">
-                  Chatbot interface will be implemented here
-                </p>
-              </div>
-            </div>
+            <Chatbot />
           </div>
         </div>
       </main>
