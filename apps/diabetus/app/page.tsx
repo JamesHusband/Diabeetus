@@ -21,35 +21,15 @@ import {
 } from '@diabetus/shared/types';
 import { fetchPatientInfo, fetchLogbook } from './api/api';
 import Image from 'next/image';
+import {
+  getTrendArrowLabel,
+  mgDlToMmol,
+  formatTargetRange,
+  getReadingColor,
+  formatTimestamp,
+} from '@diabetus/shared/utils';
 
 export default function Dashboard() {
-  const getTrendArrowLabel = (trendArrow: number): string => {
-    switch (trendArrow) {
-      case 1:
-        return '↑↑'; // Rising quickly
-      case 2:
-        return '↑'; // Rising
-      case 3:
-        return '→'; // Stable
-      case 4:
-        return '↓'; // Falling
-      case 5:
-        return '↓↓'; // Falling quickly
-      default:
-        return '?';
-    }
-  };
-
-  // Convert mg/dL to mmol/L
-  const mgDlToMmol = (mgDl: number): number => {
-    return Number((mgDl / 18.0182).toFixed(1));
-  };
-
-  // Format target range in mmol/L
-  const formatTargetRange = (low: number, high: number): string => {
-    return `${mgDlToMmol(low)}-${mgDlToMmol(high)} mmol/L`;
-  };
-
   const [activeTab, setActiveTab] = useState('home');
   const [showNotifications, setShowNotifications] = useState(false);
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
@@ -87,28 +67,6 @@ export default function Dashboard() {
 
     loadData();
   }, []);
-
-  const getReadingColor = (
-    value: number,
-    targetLow: number,
-    targetHigh: number
-  ) => {
-    const mmolValue = mgDlToMmol(value);
-    const mmolLow = mgDlToMmol(targetLow);
-    const mmolHigh = mgDlToMmol(targetHigh);
-
-    if (mmolValue < mmolLow) return 'text-red-500';
-    if (mmolValue > mmolHigh) return 'text-yellow-500';
-    return 'text-green-500';
-  };
-
-  const formatTimestamp = (timestamp: string) => {
-    return new Date(timestamp).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    });
-  };
 
   return (
     <div className="flex flex-col h-screen bg-gray-100">
