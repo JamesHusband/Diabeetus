@@ -1,27 +1,33 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { Bell, User, Loader2 } from 'lucide-react';
-import { PatientInfo } from '@diabetus/shared/types';
-import { Graph } from '@diabetus/shared/utils';
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-  ScrollArea,
-  Separator,
-  Badge,
-} from '@diabetus/ui/elements';
-
-const { formatTargetRange } = Graph;
+import { PatientInfo } from './PatientInfo/PatientInfo';
+import { NotificationBadge } from './NotificationBadge/NotificationBadge';
+import { NotificationList } from './NotificationList/NotificationList';
+import { PatientInfo as PatientInfoType } from '@diabetus/shared/types';
 
 interface HeaderProps {
   loading: boolean;
   error: string | null;
-  patientInfo: PatientInfo | null;
+  patientInfo: PatientInfoType | null;
 }
+
+const mockNotifications = [
+  {
+    title: 'Glucose Level Alert',
+    message: 'Your glucose level is above target range.',
+    timestamp: '2 minutes ago',
+  },
+  {
+    title: 'Medication Reminder',
+    message: "It's time to take your evening medication.",
+    timestamp: '1 hour ago',
+  },
+  {
+    title: 'Weekly Report',
+    message: 'Your weekly health report is ready to view.',
+    timestamp: '1 day ago',
+  },
+];
 
 export function Header({ loading, error, patientInfo }: HeaderProps) {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -38,86 +44,23 @@ export function Header({ loading, error, patientInfo }: HeaderProps) {
           priority
         />
         <div className="flex items-center space-x-4">
-          {loading ? (
-            <div className="flex items-center">
-              <Loader2 className="h-5 w-5 text-gray-500 animate-spin" />
-              <span className="ml-2 text-sm text-gray-500">Loading...</span>
-            </div>
-          ) : error ? (
-            <div className="text-red-500 text-sm">{error}</div>
-          ) : (
-            patientInfo && (
-              <div className="flex items-center">
-                <User className="h-5 w-5 text-gray-500 mr-2" />
-                <div>
-                  <p className="text-sm font-medium">{`${patientInfo.firstName} ${patientInfo.lastName}`}</p>
-                  <p className="text-xs text-gray-500">
-                    Target:{' '}
-                    {formatTargetRange(
-                      patientInfo.targetLow,
-                      patientInfo.targetHigh
-                    )}
-                  </p>
-                </div>
-              </div>
-            )
-          )}
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-gray-500 hover:text-blue-600"
-              aria-label="Notifications"
-              onClick={() => setShowNotifications(!showNotifications)}
-            >
-              <Bell className="h-6 w-6" />
-            </Button>
-            <Badge
-              variant="destructive"
-              className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center text-[10px]"
-            >
-              3
-            </Badge>
-          </div>
+          <PatientInfo
+            loading={loading}
+            error={error}
+            patientInfo={patientInfo}
+          />
+          <NotificationBadge
+            count={mockNotifications.length}
+            onClick={() => setShowNotifications(true)}
+          />
         </div>
       </div>
 
-      {/* Notification/Alarm Component */}
-      <Dialog open={showNotifications} onOpenChange={setShowNotifications}>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Notifications</DialogTitle>
-            <DialogClose />
-          </DialogHeader>
-          <ScrollArea className="h-[400px]">
-            <div className="space-y-4">
-              <div className="p-4">
-                <p className="font-medium">Glucose Level Alert</p>
-                <p className="text-sm text-gray-600">
-                  Your glucose level is above target range.
-                </p>
-                <p className="text-xs text-gray-500 mt-1">2 minutes ago</p>
-              </div>
-              <Separator />
-              <div className="p-4">
-                <p className="font-medium">Medication Reminder</p>
-                <p className="text-sm text-gray-600">
-                  It's time to take your evening medication.
-                </p>
-                <p className="text-xs text-gray-500 mt-1">1 hour ago</p>
-              </div>
-              <Separator />
-              <div className="p-4">
-                <p className="font-medium">Weekly Report</p>
-                <p className="text-sm text-gray-600">
-                  Your weekly health report is ready to view.
-                </p>
-                <p className="text-xs text-gray-500 mt-1">1 day ago</p>
-              </div>
-            </div>
-          </ScrollArea>
-        </DialogContent>
-      </Dialog>
+      <NotificationList
+        open={showNotifications}
+        onOpenChange={setShowNotifications}
+        notifications={mockNotifications}
+      />
     </header>
   );
 }
