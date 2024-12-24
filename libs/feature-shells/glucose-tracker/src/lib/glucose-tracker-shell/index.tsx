@@ -31,13 +31,25 @@ export function GlucoseTrackerShell() {
     );
   }
 
+  if (!latestReading || !patientInfo) {
+    return (
+      <GlucoseTracker
+        loading={false}
+        error="No data available"
+        readings={[]}
+        latestReading={null}
+        patientInfo={null}
+      />
+    );
+  }
+
   return (
     <GlucoseTracker
       loading={false}
       error={null}
-      readings={readings ?? []}
-      latestReading={latestReading ?? null}
-      patientInfo={patientInfo ?? null}
+      readings={readings}
+      latestReading={latestReading}
+      patientInfo={patientInfo}
     />
   );
 }
