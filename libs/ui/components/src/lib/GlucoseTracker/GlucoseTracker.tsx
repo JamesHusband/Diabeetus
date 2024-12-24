@@ -7,7 +7,6 @@ import {
 import { LoadingState } from './LoadingState/LoadingState';
 import { ErrorState } from './ErrorState/ErrorState';
 import { EmptyState } from './EmptyState/EmptyState';
-import { LatestReading } from './LatestReading/LatestReading';
 
 interface GlucoseTrackerProps {
   loading: boolean;
@@ -43,7 +42,6 @@ export function GlucoseTracker({
 
   return (
     <div className="space-y-6">
-      <LatestReading reading={latestReading} patientInfo={patientInfo} />
       <Graph
         data={graphData}
         targetRange={{

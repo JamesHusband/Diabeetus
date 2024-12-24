@@ -1,7 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { GlucoseTracker, Header, Chatbot, Footer } from '@diabetus/ui';
+import {
+  GlucoseTracker,
+  Header,
+  Chatbot,
+  Footer,
+  LatestReading,
+} from '@diabetus/ui';
 import {
   PatientInfo,
   LogbookEntry,
@@ -55,6 +61,12 @@ export default function Dashboard() {
       <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="space-y-6">
+            {!loading && !error && latestReading && patientInfo && (
+              <LatestReading
+                reading={latestReading}
+                patientInfo={patientInfo}
+              />
+            )}
             <GlucoseTracker
               loading={loading}
               error={error}
