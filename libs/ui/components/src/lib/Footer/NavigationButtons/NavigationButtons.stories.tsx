@@ -1,21 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Footer } from './Footer';
+import { NavigationButtons } from './NavigationButtons';
 
-const meta: Meta<typeof Footer> = {
-  component: Footer,
-  title: 'Components/Footer',
+const meta: Meta<typeof NavigationButtons> = {
+  component: NavigationButtons,
+  title: 'Components/Footer/NavigationButtons',
   tags: ['autodocs'],
-  decorators: [
-    (Story) => (
-      <div className="h-[200px] relative">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
-type Story = StoryObj<typeof Footer>;
+type Story = StoryObj<typeof NavigationButtons>;
 
 export const Default: Story = {
   args: {

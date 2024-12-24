@@ -1,19 +1,17 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
-  const mockOnTabChange = jest.fn();
+  const defaultProps = {
+    activeSection: 'home',
+    onNavigate: jest.fn(),
+  };
 
-  beforeEach(() => {
-    mockOnTabChange.mockClear();
-  });
-
-  it('renders all navigation buttons', () => {
-    render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-    // Check if all buttons are present
+  it('renders navigation buttons', () => {
+    render(<Footer {...defaultProps} />);
     expect(screen.getByRole('button', { name: /home/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /trends/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /glucose/i })).toBeTruthy();
@@ -21,31 +19,42 @@ describe('Footer', () => {
     expect(screen.getByRole('button', { name: /chat/i })).toBeTruthy();
   });
 
-  it('applies active styles to current tab', () => {
-    render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-    // Check class names directly
-    const homeButton = screen.getByRole('button', { name: /home/i });
-    const trendsButton = screen.getByRole('button', { name: /trends/i });
-    expect(homeButton.className).toContain('text-blue-500');
-    expect(trendsButton.className).toContain('text-gray-500');
+  it('applies custom className', () => {
+    const { container } = render(
+      <Footer {...defaultProps} className="test-class" />
+    );
+    expect(container.firstChild).toHaveClass('test-class');
   });
 
-  it('calls onTabChange when clicking a tab', () => {
-    render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-    fireEvent.click(screen.getByRole('button', { name: /trends/i }));
-    expect(mockOnTabChange).toHaveBeenCalledWith('trends');
+  it('renders with correct base styles', () => {
+    const { container } = render(<Footer {...defaultProps} />);
+    expect(container.firstChild).toHaveClass(
+      'bg-muted/80',
+      'backdrop-blur',
+      'shadow-lg',
+      'fixed',
+      'bottom-0',
+      'w-full',
+      'border-t',
+      'border-border'
+    );
   });
 
-  it('handles all tab changes correctly', () => {
-    render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-
-    const tabs = ['home', 'trends', 'glucose', 'carbs', 'chat'];
-    tabs.forEach((tab) => {
-      fireEvent.click(
-        screen.getByRole('button', { name: new RegExp(tab, 'i') })
-      );
-      expect(mockOnTabChange).toHaveBeenCalledWith(tab);
+  it('renders buttons with correct height', () => {
+    render(<Footer {...defaultProps} />);
+    const buttons = screen.getAllByRole('button');
+    buttons.forEach((button) => {
+      expect(button).toHaveClass('min-h-[4rem]');
     });
-    expect(mockOnTabChange).toHaveBeenCalledTimes(5);
+  });
+
+  it('renders buttons with correct text size', () => {
+    render(<Footer {...defaultProps} />);
+    const buttons = screen.getAllByRole('button');
+    buttons.forEach((button) => {
+      const label = button.querySelector('span');
+      expect(label).toBeTruthy();
+      expect(label).toHaveClass('text-sm', 'font-medium');
+    });
   });
 });
