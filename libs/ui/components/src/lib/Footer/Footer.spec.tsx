@@ -1,5 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
@@ -11,23 +13,21 @@ describe('Footer', () => {
 
   it('renders all navigation buttons', () => {
     render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-    expect(screen.getByRole('button', { name: /home/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /trends/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /glucose/i })
-    ).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /carbs/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /chat/i })).toBeInTheDocument();
+    // Check if all buttons are present
+    expect(screen.getByRole('button', { name: /home/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /trends/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /glucose/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /carbs/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /chat/i })).toBeTruthy();
   });
 
   it('applies active styles to current tab', () => {
     render(<Footer activeTab="home" onTabChange={mockOnTabChange} />);
-    expect(screen.getByRole('button', { name: /home/i })).toHaveClass(
-      'text-blue-500'
-    );
-    expect(screen.getByRole('button', { name: /trends/i })).toHaveClass(
-      'text-gray-500'
-    );
+    // Check class names directly
+    const homeButton = screen.getByRole('button', { name: /home/i });
+    const trendsButton = screen.getByRole('button', { name: /trends/i });
+    expect(homeButton.className).toContain('text-blue-500');
+    expect(trendsButton.className).toContain('text-gray-500');
   });
 
   it('calls onTabChange when clicking a tab', () => {
