@@ -1,1 +1,1 @@
-export * from './lib/gluco-tracker';
+export * from './lib/glucose-tracker';
