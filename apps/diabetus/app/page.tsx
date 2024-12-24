@@ -21,13 +21,12 @@ import {
 } from '@diabetus/shared/types';
 import { fetchPatientInfo, fetchLogbook } from './api/api';
 import Image from 'next/image';
-import {
-  getTrendArrowLabel,
-  mgDlToMmol,
-  formatTargetRange,
-  getReadingColor,
-  formatTimestamp,
-} from '@diabetus/shared/utils';
+import { Graph, Units, Dates } from '@diabetus/shared/utils';
+
+const { getTrendArrowLabel, formatTargetRange, getReadingColor } = Graph;
+
+const { mgDlToMmol } = Units;
+const { formatTimestamp } = Dates;
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('home');

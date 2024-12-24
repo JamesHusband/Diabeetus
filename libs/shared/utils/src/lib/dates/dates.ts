@@ -3,10 +3,14 @@
  * @param timestamp - ISO timestamp string
  * @returns Formatted time string (e.g., "2:30 PM")
  */
-export const formatTimestamp = (timestamp: string): string => {
+const formatTimestamp = (timestamp: string): string => {
   return new Date(timestamp).toLocaleTimeString([], {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
   });
 };
+
+export const Dates = {
+  formatTimestamp,
+} as const;
