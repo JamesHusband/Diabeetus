@@ -1,11 +1,11 @@
 'use client';
 
 import { GlucoseTracker } from '@diabetus/ui';
-import { useGlucoseTracker } from '../hooks/use-glucose-tracker';
+import { useAppState } from '@diabetus/shared/state';
 
 export function GlucoseTrackerShell() {
   const { loading, error, readings, latestReading, patientInfo } =
-    useGlucoseTracker();
+    useAppState();
 
   if (loading) {
     return (
