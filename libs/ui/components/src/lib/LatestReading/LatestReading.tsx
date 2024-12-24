@@ -23,7 +23,12 @@ export function LatestReading({ reading, patientInfo }: LatestReadingProps) {
             <p className="text-sm text-gray-500">Glucose Level</p>
             <p className="text-2xl font-bold">{reading.Value} mmol/L</p>
             <p className="text-xs text-gray-500">
-              {new Date(reading.Timestamp).toLocaleString()}
+              {new Date(reading.Timestamp).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false,
+              })}
             </p>
           </div>
           <div>
