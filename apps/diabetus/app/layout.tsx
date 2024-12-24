@@ -1,9 +1,7 @@
 import './global.css';
+import { LayoutClient } from './layout-client';
 
-export const metadata = {
-  title: 'frontend',
-  description: 'A NX Monorepo Boilerplate',
-};
+export { metadata } from './metadata';
 
 export default function RootLayout({
   children,
@@ -12,7 +10,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LayoutClient>{children}</LayoutClient>
+      </body>
     </html>
   );
 }

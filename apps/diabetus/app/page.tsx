@@ -1,13 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  GlucoseTracker,
-  Header,
-  Chatbot,
-  Footer,
-  LatestReading,
-} from '@diabetus/ui';
+import { GlucoseTracker, Chatbot, LatestReading } from '@diabetus/ui';
 import {
   PatientInfo,
   LogbookEntry,
@@ -16,7 +10,6 @@ import {
 import { fetchPatientInfo, fetchLogbook } from './api/api';
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState('home');
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [latestReading, setLatestReading] = useState<LogbookEntry | null>(null);
   const [readings, setReadings] = useState<GlucoseReading[]>([]);
@@ -54,32 +47,22 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      <Header loading={loading} error={error} patientInfo={patientInfo} />
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="space-y-6">
-            {!loading && !error && latestReading && patientInfo && (
-              <LatestReading
-                reading={latestReading}
-                patientInfo={patientInfo}
-              />
-            )}
-            <GlucoseTracker
-              loading={loading}
-              error={error}
-              readings={readings}
-              latestReading={latestReading}
-              patientInfo={patientInfo}
-            />
-            <Chatbot />
-          </div>
+    <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="space-y-6">
+          {!loading && !error && latestReading && patientInfo && (
+            <LatestReading reading={latestReading} patientInfo={patientInfo} />
+          )}
+          <GlucoseTracker
+            loading={loading}
+            error={error}
+            readings={readings}
+            latestReading={latestReading}
+            patientInfo={patientInfo}
+          />
+          <Chatbot />
         </div>
-      </main>
-
-      <Footer activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+      </div>
+    </main>
   );
 }
