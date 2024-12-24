@@ -22,6 +22,14 @@ import {
 import { fetchPatientInfo, fetchLogbook } from './api/api';
 import Image from 'next/image';
 import { Graph, Units, Dates } from '@diabetus/shared/utils';
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from '@diabetus/ui/elements';
 
 const { getTrendArrowLabel, formatTargetRange, getReadingColor } = Graph;
 
@@ -121,17 +129,12 @@ export default function Dashboard() {
         </div>
 
         {/* Notification/Alarm Component */}
-        {showNotifications && (
-          <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-20">
-            <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Notifications</h2>
-              <button
-                onClick={() => setShowNotifications(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
+        <Dialog open={showNotifications} onOpenChange={setShowNotifications}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Notifications</DialogTitle>
+              <DialogClose />
+            </DialogHeader>
             <div className="max-h-96 overflow-y-auto">
               <div className="p-4 border-b border-gray-200">
                 <p className="font-medium">Glucose Level Alert</p>
@@ -155,8 +158,8 @@ export default function Dashboard() {
                 <p className="text-xs text-gray-500 mt-1">1 day ago</p>
               </div>
             </div>
-          </div>
-        )}
+          </DialogContent>
+        </Dialog>
       </header>
 
       {/* Main Content */}
@@ -259,56 +262,61 @@ export default function Dashboard() {
       <nav className="bg-white shadow-lg fixed bottom-0 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-around">
-            <button
+            <Button
               onClick={() => setActiveTab('home')}
-              className={`py-4 px-2 text-center ${
+              variant="ghost"
+              className={
                 activeTab === 'home' ? 'text-blue-500' : 'text-gray-500'
-              }`}
+              }
               aria-label="Home"
             >
               <Home className="h-6 w-6 mx-auto" />
               <span className="text-xs">Home</span>
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab('trends')}
-              className={`py-4 px-2 text-center ${
+              variant="ghost"
+              className={
                 activeTab === 'trends' ? 'text-blue-500' : 'text-gray-500'
-              }`}
+              }
               aria-label="Trends"
             >
               <TrendingUp className="h-6 w-6 mx-auto" />
               <span className="text-xs">Trends</span>
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab('glucose')}
-              className={`py-4 px-2 text-center ${
+              variant="ghost"
+              className={
                 activeTab === 'glucose' ? 'text-blue-500' : 'text-gray-500'
-              }`}
+              }
               aria-label="Glucose"
             >
               <Activity className="h-6 w-6 mx-auto" />
               <span className="text-xs">Glucose</span>
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab('carbs')}
-              className={`py-4 px-2 text-center ${
+              variant="ghost"
+              className={
                 activeTab === 'carbs' ? 'text-blue-500' : 'text-gray-500'
-              }`}
+              }
               aria-label="Carbs"
             >
               <PieChart className="h-6 w-6 mx-auto" />
               <span className="text-xs">Carbs</span>
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab('chat')}
-              className={`py-4 px-2 text-center ${
+              variant="ghost"
+              className={
                 activeTab === 'chat' ? 'text-blue-500' : 'text-gray-500'
-              }`}
+              }
               aria-label="Chat"
             >
               <MessageSquare className="h-6 w-6 mx-auto" />
               <span className="text-xs">Chat</span>
-            </button>
+            </Button>
           </div>
         </div>
       </nav>

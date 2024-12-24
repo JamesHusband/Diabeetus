@@ -15,6 +15,7 @@ import {
 import { GlucoseReading } from '@diabetus/shared/types';
 import { formatTimestamp } from './utils';
 import { useState } from 'react';
+import { Button, Label } from '@diabetus/ui/elements';
 
 ChartJS.register(
   CategoryScale,
@@ -147,48 +148,49 @@ export function GlucoseChart({
       <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
         <div className="flex gap-2">
           {(['6h', '12h', '24h', '3d', '7d'] as TimeRange[]).map((range) => (
-            <button
+            <Button
               key={range}
               onClick={() => setSelectedRange(range)}
-              className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                selectedRange === range
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100'
-              }`}
+              variant={selectedRange === range ? 'default' : 'ghost'}
+              size="sm"
             >
               {range}
-            </button>
+            </Button>
           ))}
-          <button
+          <Button
             onClick={() => setSelectedRange('custom')}
-            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-              selectedRange === 'custom'
-                ? 'bg-blue-500 text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
-            }`}
+            variant={selectedRange === 'custom' ? 'default' : 'ghost'}
+            size="sm"
           >
             Custom
-          </button>
+          </Button>
         </div>
         {selectedRange === 'custom' && (
           <div className="flex items-center gap-2 ml-4">
-            <input
-              type="date"
-              value={customRange.from}
-              onChange={(e) =>
-                setCustomRange((prev) => ({ ...prev, from: e.target.value }))
-              }
-              className="px-2 py-1 rounded border text-sm"
-            />
-            <span className="text-gray-500">to</span>
-            <input
-              type="date"
-              value={customRange.to}
-              onChange={(e) =>
-                setCustomRange((prev) => ({ ...prev, to: e.target.value }))
-              }
-              className="px-2 py-1 rounded border text-sm"
-            />
+            <div className="grid gap-1.5">
+              <Label htmlFor="date-from">From</Label>
+              <input
+                id="date-from"
+                type="date"
+                value={customRange.from}
+                onChange={(e) =>
+                  setCustomRange((prev) => ({ ...prev, from: e.target.value }))
+                }
+                className="px-2 py-1 rounded border text-sm"
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="date-to">To</Label>
+              <input
+                id="date-to"
+                type="date"
+                value={customRange.to}
+                onChange={(e) =>
+                  setCustomRange((prev) => ({ ...prev, to: e.target.value }))
+                }
+                className="px-2 py-1 rounded border text-sm"
+              />
+            </div>
           </div>
         )}
       </div>
