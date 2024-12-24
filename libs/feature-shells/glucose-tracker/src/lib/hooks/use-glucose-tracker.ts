@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import {
   PatientInfo,
@@ -48,10 +50,10 @@ export function useGlucoseTracker() {
     loadData();
   }, []);
 
-  // Convert readings to mmol/L for display
+  // Convert readings to mmol/L for display and format for graph
   const processedReadings = readings.map((reading) => ({
-    ...reading,
-    Value: mgDlToMmol(reading.ValueInMgPerDl),
+    value: mgDlToMmol(reading.ValueInMgPerDl),
+    timestamp: reading.Timestamp,
   }));
 
   // Convert latest reading to mmol/L if it exists
