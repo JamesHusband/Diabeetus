@@ -1,20 +1,9 @@
 {
-  "name": "glucose-tracker",
+  "name": "GlucoTracker",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/feature-shells/glucose-tracker/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/feature-shells/glucose-tracker",
-        "tsConfig": "libs/feature-shells/glucose-tracker/tsconfig.lib.json",
-        "packageJson": "libs/feature-shells/glucose-tracker/package.json",
-        "main": "libs/feature-shells/glucose-tracker/src/index.ts",
-        "assets": ["libs/feature-shells/glucose-tracker/*.md"]
-      }
-    }
-  }
+  "// targets": "to see all targets run: nx show project GlucoTracker --web",
+  "targets": {}
 }

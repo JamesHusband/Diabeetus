@@ -1,5 +1,5 @@
 export default {
-  displayName: 'glucose-tracker',
+  displayName: 'GlucoTracker',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
