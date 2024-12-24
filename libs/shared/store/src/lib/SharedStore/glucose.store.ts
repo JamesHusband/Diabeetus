@@ -1,46 +1,50 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 import { PatientInfo, LogbookEntry } from '@diabetus/shared/types';
 
-interface AppState {
-  // Auth State
-  isAuthenticated: boolean;
+export interface AppState {
+  // State
+  loading: boolean;
+  error: string | null;
   authToken: string | null;
-  // Existing State
+  isAuthenticated: boolean;
   patientInfo: PatientInfo | null;
   readings: LogbookEntry[];
   latestReading: LogbookEntry | null;
-  loading: boolean;
-  error: string | null;
 
-  // Auth Actions
+  // Actions
+  setLoading: (loading: boolean) => void;
+  setError: (error: string | null) => void;
   setAuthToken: (token: string | null) => void;
-  setIsAuthenticated: (isAuthenticated: boolean) => void;
-  // Existing Actions
   setPatientInfo: (info: PatientInfo | null) => void;
   setReadings: (readings: LogbookEntry[]) => void;
   setLatestReading: (reading: LogbookEntry | null) => void;
-  setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
 }
 
-export const useAppState = create<AppState>((set) => ({
-  // Auth Initial State
-  isAuthenticated: false,
-  authToken: null,
-  // Existing Initial State
-  patientInfo: null,
-  readings: [],
-  latestReading: null,
-  loading: false,
-  error: null,
+export const useAppState = create<AppState>()(
+  devtools(
+    (set) => ({
+      // Initial state
+      loading: false,
+      error: null,
+      authToken: null,
+      isAuthenticated: false,
+      patientInfo: null,
+      readings: [],
+      latestReading: null,
 
-  // Auth Actions
-  setAuthToken: (token) => set({ authToken: token, isAuthenticated: !!token }),
-  setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
-  // Existing Actions
-  setPatientInfo: (info) => set({ patientInfo: info }),
-  setReadings: (readings) => set({ readings }),
-  setLatestReading: (reading) => set({ latestReading: reading }),
-  setLoading: (loading) => set({ loading }),
-  setError: (error) => set({ error }),
-}));
+      // Actions
+      setLoading: (loading) => set({ loading }),
+      setError: (error) => set({ error }),
+      setAuthToken: (token) =>
+        set({ authToken: token, isAuthenticated: !!token }),
+      setPatientInfo: (info) => set({ patientInfo: info }),
+      setReadings: (readings) => set({ readings }),
+      setLatestReading: (reading) => set({ latestReading: reading }),
+    }),
+    {
+      name: 'Diabetus Store',
+      enabled: process.env.NODE_ENV === 'development',
+    }
+  )
+);

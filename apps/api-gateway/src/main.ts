@@ -3,9 +3,15 @@
  * This is only a minimal backend to get started.
  */
 
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import cookieParser from 'cookie-parser';
+
+// Load environment variables from the root .env file
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+
 import express from 'express';
 import cors from 'cors';
-import * as path from 'path';
 import { createLibreRoutes } from '@diabetus/data-access/libre';
 
 const app = express();
@@ -23,6 +29,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 

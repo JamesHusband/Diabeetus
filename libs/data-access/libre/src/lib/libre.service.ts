@@ -25,23 +25,45 @@ const createClient = (config: LibreConfig): AxiosInstance => {
     return config;
   });
 
+  // Add response interceptor for error handling
+  client.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      console.error('API Error:', error.message);
+      throw error;
+    }
+  );
+
   return client;
 };
 
 const login =
   (client: AxiosInstance) =>
   async (email: string, password: string): Promise<LoginResponse> => {
-    const { data } = await client.post<LoginResponse>('/llu/auth/login', {
-      email,
-      password,
-    });
-    // Store auth ticket for future requests
-    if (data.data?.authTicket?.token) {
+    if (!email || !password) {
+      throw new Error('Email and password are required');
+    }
+
+    try {
+      const { data } = await client.post<LoginResponse>('/llu/auth/login', {
+        email,
+        password,
+      });
+
+      if (!data.data?.authTicket?.token) {
+        throw new Error('No auth token received');
+      }
+
+      // Store auth ticket for future requests
       client.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${data.data.authTicket.token}`;
+
+      return data;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error;
     }
-    return data;
   };
 
 const acceptTerms = (client: AxiosInstance) => async () =>
@@ -51,29 +73,46 @@ const acceptPrivacyPolicy = (client: AxiosInstance) => async () =>
   await client.post('/auth/continue/pp');
 
 const getLogbook = (client: AxiosInstance) => async () => {
-  // First get connections to get patientId
-  const connectionsResponse = await getConnections(client)();
-  if (!connectionsResponse.data?.length) {
-    throw new Error('No connections found');
-  }
+  try {
+    // First get connections to get patientId
+    const connectionsResponse = await getConnections(client)();
+    if (!connectionsResponse.data?.length) {
+      throw new Error('No connections found');
+    }
 
-  const patientId = connectionsResponse.data[0].patientId;
-  const path = `/llu/connections/${patientId}/logbook`;
-  const { data } = await client.get<LogbookResponse>(path);
-  return data;
+    const patientId = connectionsResponse.data[0].patientId;
+    const path = `/llu/connections/${patientId}/logbook`;
+    const { data } = await client.get<LogbookResponse>(path);
+    return data;
+  } catch (error) {
+    console.error('Failed to get logbook:', error);
+    throw error;
+  }
 };
 
 const getConnections = (client: AxiosInstance) => async () => {
-  const path = '/llu/connections';
-  const { data } = await client.get<ConnectionsResponse>(path);
-  return data;
+  try {
+    const path = '/llu/connections';
+    const { data } = await client.get<ConnectionsResponse>(path);
+    return data;
+  } catch (error) {
+    console.error('Failed to get connections:', error);
+    throw error;
+  }
 };
 
 const updateToken = (client: AxiosInstance) => (token: string) => {
+  if (!token) {
+    throw new Error('Token is required');
+  }
   client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 const createLibreService = (config: LibreConfig) => {
+  if (!config.baseUrl) {
+    throw new Error('Base URL is required');
+  }
+
   const client = createClient(config);
 
   return {
