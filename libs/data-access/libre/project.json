@@ -1,0 +1,20 @@
+{
+  "name": "LibreApp",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-access/libre/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/data-access/libre",
+        "tsConfig": "libs/data-access/libre/tsconfig.lib.json",
+        "packageJson": "libs/data-access/libre/package.json",
+        "main": "libs/data-access/libre/src/index.ts",
+        "assets": ["libs/data-access/libre/*.md"]
+      }
+    }
+  }
+}
