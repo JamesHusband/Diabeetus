@@ -25,21 +25,21 @@ Diabetus is a parent-friendly diabetes management application designed with simp
 
 ### Core Features
 
-- 📊 **Real-Time Monitoring** - Automatic sync with Libre device and instant access to glucose levels
-- 📈 **Visual Analysis & Insights** - Advanced pattern recognition and predictive glucose trend modeling
-- 🍎 **Smart Management Tools** - Carbohydrate tracking, meal timing recommendations, and treatment history
-- 📱 **Family-Friendly Experience** - Simple, intuitive interface with clear visualizations
+- **Real-Time Monitoring** - Automatic sync with Libre device and instant access to glucose levels
+- **Visual Analysis & Insights** - Advanced pattern recognition and predictive glucose trend modeling
+- **Smart Management Tools** - Carbohydrate tracking, meal timing recommendations, and treatment history
+- **Family-Friendly Experience** - Simple, intuitive interface with clear visualizations
 
 ### Technical Features
 
-- 🏗️ **NX Monorepo Structure** - Efficient workspace organization for optimal code sharing
-- ⚡ **Next.js Frontend** - Server-side rendered React application with modern UI
-- 🔐 **Express Gateway** - Dynamic API gateway for LibreView integration
-- 📦 **Modular APIs** - Self-contained API libraries for glucose data management
-- 🎨 **Modern Styling** - Responsive and accessible designs using TailwindCSS
-- 🧪 **Full Test Suite** - Comprehensive testing with Jest and Cypress
-- 🔄 **Continuous Integration** - Automated testing and deployment pipeline
-- 📚 **Storybook** - Interactive component development and documentation
+- **NX Monorepo Structure** - Efficient workspace organization for optimal code sharing
+- **Next.js Frontend** - Server-side rendered React application with modern UI
+- **Express Gateway** - Dynamic API gateway for LibreView integration
+- **Modular APIs** - Self-contained API libraries for glucose data management
+- **Modern Styling** - Responsive and accessible designs using TailwindCSS
+- **Full Test Suite** - Comprehensive testing with Jest and Cypress
+- **Continuous Integration** - Automated testing and deployment pipeline
+- **Storybook** - Interactive component development and documentation
 
 ## Understanding Diabetes
 
